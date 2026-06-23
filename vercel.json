@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/passport", "destination": "/api/passport" }
+    { "source": "/passport", "destination": "/api/passport" },
+    { "source": "/records", "destination": "/api/records" }
   ]
 }
