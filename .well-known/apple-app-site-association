@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["HKNU3DUW7T.com.southernbadger.wagnote"],
+        "components": [
+          { "/": "/join/*", "comment": "WagNote family invite links" }
+        ]
+      }
+    ]
+  }
+}

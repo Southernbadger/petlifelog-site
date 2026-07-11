@@ -1,6 +1,16 @@
 {
   "rewrites": [
     { "source": "/passport", "destination": "/api/passport" },
-    { "source": "/records", "destination": "/api/records" }
+    { "source": "/records", "destination": "/api/records" },
+    { "source": "/join/:code", "destination": "/api/join?code=:code" },
+    { "source": "/join", "destination": "/api/join" }
+  ],
+  "headers": [
+    {
+      "source": "/.well-known/apple-app-site-association",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" }
+      ]
+    }
   ]
 }
