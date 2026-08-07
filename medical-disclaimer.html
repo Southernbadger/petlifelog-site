@@ -43,7 +43,8 @@
   .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 18px;}
   .legal table{border-collapse:collapse;width:100%;background:linear-gradient(165deg,var(--white-1),var(--white-2));border-radius:14px;box-shadow:var(--clay-tile);overflow:hidden;}
   .legal th,.legal td{text-align:left;padding:11px 14px;font-weight:500;font-size:.94rem;line-height:1.5;color:var(--ink-soft);border-bottom:1px solid rgba(20,55,48,.08);vertical-align:top;}
-  .legal th{font-weight:800;color:var(--teal-ink);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;}
+  /* no text-transform: the rendered text must match the approved document exactly */
+  .legal th{font-weight:800;color:var(--teal-ink);}
   .legal tr:last-child td{border-bottom:none;}
 
   .legal-foot{text-align:center;padding:8px clamp(20px,5vw,40px) clamp(40px,6vw,64px);}
