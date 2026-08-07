@@ -3,7 +3,10 @@
     { "source": "/passport", "destination": "/api/passport" },
     { "source": "/records", "destination": "/api/records" },
     { "source": "/join/:code", "destination": "/api/join?code=:code" },
-    { "source": "/join", "destination": "/api/join" }
+    { "source": "/join", "destination": "/api/join" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/medical-disclaimer", "destination": "/medical-disclaimer.html" }
   ],
   "headers": [
     {

@@ -39,7 +39,7 @@ export default async function handler(req, res) {
       .send(
         '<!doctype html><meta charset="utf-8">' +
           '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-          '<title>Pet Life Log — Passport</title>' +
+          '<title>WagNote — Passport</title>' +
           '<body style="margin:0;font-family:ui-rounded,system-ui,-apple-system,sans-serif;background:#ECEFEE;color:#16231F;text-align:center;padding:64px 20px">' +
           '<div style="font-size:34px">🐾</div>' +
           '<h1 style="font-size:21px">Passport temporarily unavailable</h1>' +
