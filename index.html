@@ -973,16 +973,48 @@ var panels = Array.prototype.slice.call(document.querySelectorAll('.cpanel'));
       onScroll();
     })();
 
-    Array.prototype.slice.call(document.querySelectorAll('.vidctl .minibtn')).forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var v=document.getElementById(btn.getAttribute('data-vid'));
-        if(!v){ return; }
-        v.muted = !v.muted;
-        btn.textContent = v.muted ? 'Sound on' : 'Sound off';
-        btn.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
-        var p = v.play(); if(p && p.catch){ p.catch(function(){}); }
+    (function(){
+      // The sound belongs to the video you are looking at. Each button records
+      // whether that person wants sound for its own video; a video is only
+      // audible while it is also on screen. Nothing here touches playback.
+      var vids = Array.prototype.slice.call(document.querySelectorAll('.vidctl .minibtn')).map(function(btn){
+        return { btn: btn, el: document.getElementById(btn.getAttribute('data-vid')), wants: false };
+      }).filter(function(v){ return v.el; });
+      if(!vids.length){ return; }
+
+      // in view = at least half of the video is inside the window
+      function seen(el){
+        var r = el.getBoundingClientRect();
+        var h = window.innerHeight || document.documentElement.clientHeight;
+        if(!r.height){ return 0; }
+        var v = Math.min(r.bottom, h) - Math.max(r.top, 0);
+        return v <= 0 ? 0 : v / r.height;
+      }
+      // at most one video is ever audible: the most-visible one that wants sound
+      function apply(){
+        var winner = null, best = 0;
+        vids.forEach(function(v){
+          var f = v.wants ? seen(v.el) : 0;
+          if(f >= 0.5 && f > best){ best = f; winner = v; }
+        });
+        vids.forEach(function(v){
+          var m = (v !== winner);
+          if(v.el.muted !== m){ v.el.muted = m; }
+        });
+      }
+      vids.forEach(function(v){
+        v.btn.addEventListener('click', function(){
+          v.wants = !v.wants;
+          v.btn.textContent = v.wants ? 'Sound off' : 'Sound on';
+          v.btn.setAttribute('aria-label', v.wants ? 'Turn sound off' : 'Turn sound on');
+          apply();
+          var p = v.el.play(); if(p && p.catch){ p.catch(function(){}); }
+        });
       });
-    });
+      window.addEventListener('scroll', apply, {passive:true});
+      window.addEventListener('resize', apply, {passive:true});
+      apply();
+    })();
 
 </script>
 </body>
