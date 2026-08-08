@@ -383,8 +383,8 @@
   .sb-logo{height:32px;width:auto;display:block;}
   .phonevid{display:block;width:100%;border-radius:33px;background:#0f2a26;}
   .vidctl{text-align:center;margin-top:10px;}
-  .vidctl .minibtn{cursor:pointer;font-family:inherit;}
-  .foot a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
+  .vidctl .minibtn{cursor:pointer;font-family:inherit;font-size:.92rem;min-height:44px;padding:10px 22px;border-radius:12px;}
+  .foot a{color:inherit;text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:13px 6px;}
 </style>
 </head>
 <body>
@@ -941,6 +941,21 @@ var panels = Array.prototype.slice.call(document.querySelectorAll('.cpanel'));
     var car=document.getElementById('carousel');
     car.addEventListener('mouseenter',function(){clearInterval(timer);});
     car.addEventListener('mouseleave',restart);
+    // thumb-swipe: a mostly-sideways drag moves one slide, exactly as the arrows do.
+    // Listeners are passive, so a mostly-up-and-down drag is never intercepted and
+    // the page scrolls as it always has.
+    var swipeX=0, swipeY=0, swiping=false;
+    car.addEventListener('touchstart', function(e){
+      if(e.touches.length!==1){ swiping=false; return; }
+      swiping=true; swipeX=e.touches[0].clientX; swipeY=e.touches[0].clientY;
+    }, {passive:true});
+    car.addEventListener('touchend', function(e){
+      if(!swiping){ return; } swiping=false;
+      var t=e.changedTouches && e.changedTouches[0]; if(!t){ return; }
+      var dx=t.clientX-swipeX, dy=t.clientY-swipeY;
+      if(Math.abs(dx) < 40 || Math.abs(dx) <= Math.abs(dy)){ return; }
+      go(dx < 0 ? i+1 : i-1);
+    }, {passive:true});
     restart();
 
     var joinBtn=document.getElementById('joinBtn'), email=document.getElementById('email');
