@@ -394,6 +394,8 @@
 
   .sb-logo{height:32px;width:auto;display:block;}
   .phonevid{display:block;width:100%;border-radius:33px;background:#0f2a26;}
+  .pagedoc{display:block;max-width:100%;width:clamp(365px,36.2vw,434px);border-radius:12px;box-shadow:var(--clay-phone);}
+  .cpanel .pagedoc{width:clamp(295px,25.5vw,340px);}
   .vidctl{text-align:center;margin-top:10px;}
   .vidctl .minibtn{cursor:pointer;font-family:inherit;font-size:.92rem;min-height:44px;padding:10px 22px;border-radius:12px;}
   .foot a{color:inherit;text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:13px 6px;}
@@ -432,17 +434,7 @@
         <!-- 2 VET SUMMARY -->
         <div class="cpanel cp2">
           <div class="fcard"><div class="name">Medical summary</div><h2>One tap turns a month of notes into a vet-ready page.</h2><p>Conditions, weight direction, every dose given or missed, symptom patterns, lab trends, and your questions for the vet.</p></div>
-          <div class="device-wrap"><div class="device"><div class="speaker"></div><div class="screen">
-            <div class="scr-eyebrow">WagNote</div><div class="scr-title">Medical Summary</div><div class="scr-meta">Scout · Labrador · 9 yrs</div>
-            <div class="card">
-              <div class="row"><span class="lbl">Conditions</span><span class="chip teal">Epilepsy · CKD</span></div>
-              <div class="row"><span class="lbl">Allergies</span><span class="chip teal">Chicken</span></div>
-              <div class="row"><span class="lbl">Weight</span><span class="chip neutral"><span class="arr">↓</span>0.4 kg</span></div>
-              <div class="row"><span class="lbl">Doses given</span><span class="chip teal">28 / 30</span></div>
-            </div>
-            <div class="card"><div class="q-head">Questions for the vet</div><div class="bar b90"></div><div class="bar b75"></div></div>
-            <div class="scr-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>Export PDF</div>
-          </div></div></div>
+          <div class="device-wrap"><img class="pagedoc" src="/wagnote-shot-02-medical-summary.png" alt="Medical summary" /></div>
         </div>
 
         <!-- 3 MEDICATIONS -->
@@ -463,17 +455,10 @@
 
         <!-- 5 SPECIALIZED TRACKERS -->
         <div class="cpanel cp5">
-          <div class="fcard"><div class="name">Specialized trackers</div><h2>The numbers that actually change, tracked simply.</h2><p>Seizures, water intake, resting breaths, quality of life, post-op recovery — each with its own trend, switched on for your pet's conditions.</p></div>
-          <div class="device-wrap"><div class="device"><div class="speaker"></div><div class="screen">
-            <div class="scr-eyebrow">WagNote</div><div class="scr-title">Resting breaths</div><div class="scr-meta">Scout · breaths per minute</div>
-            <div class="bignum"><div class="n">22</div><div class="u">last reading · watch above 30</div></div>
-            <svg class="spark" viewBox="0 0 200 60" preserveAspectRatio="none">
-              <line x1="0" y1="20" x2="200" y2="20" stroke="#cbd6d1" stroke-width="1" stroke-dasharray="3 4"/>
-              <polyline points="6,40 40,36 74,42 108,34 142,38 176,30 194,33" fill="none" stroke="#1C8268" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="194" cy="33" r="4" fill="#1C8268"/>
-            </svg>
-            <div class="note-sm">Best taken while your pet is asleep or calm.</div>
-          </div></div></div>
+          <div class="fcard"><div class="name">Specialized trackers</div><h2>The numbers that actually change, tracked simply.</h2><p>Seizures, water intake, resting breaths, quality of life — each with its own trend, switched on for your pet's conditions.</p></div>
+          <div class="device-wrap"><div class="device"><div class="speaker"></div>
+            <img class="phonevid" src="/wagnote-shot-06-creatinine.png" alt="Specialized trackers" />
+          </div></div>
         </div>
 
         <!-- 6 RECORDS & SCANNING -->
@@ -583,12 +568,7 @@
           <li><b>Call to book or share to the clinic</b> from the same screen.</li>
         </ul></div>
       </div>
-      <div class="device-wrap"><div><div class="device"><div class="speaker"></div><div class="screen">
-        <div class="scr-eyebrow">WagNote</div><div class="scr-title">Medical Summary</div><div class="scr-meta">Scout · Labrador · 9 yrs</div>
-        <div class="card"><div class="row"><span class="lbl">Conditions</span><span class="chip teal">Epilepsy · CKD</span></div><div class="row"><span class="lbl">Allergies</span><span class="chip teal">Chicken</span></div><div class="row"><span class="lbl">Weight</span><span class="chip neutral"><span class="arr">↓</span>0.4 kg</span></div><div class="row"><span class="lbl">Doses given</span><span class="chip teal">28 / 30</span></div></div>
-        <div class="card"><div class="q-head">Questions for the vet</div><div class="bar b90"></div><div class="bar b75"></div></div>
-        <div class="scr-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>Export PDF</div>
-      </div></div></div></div>
+      <div class="device-wrap"><div><img class="pagedoc" src="/wagnote-shot-02-medical-summary.png" alt="Medical summary" /></div></div>
     </div>
   </section>
 
@@ -668,7 +648,7 @@
           <li>Anything it can't read is <b>left blank and flagged</b> for you.</li>
         </ul></div>
         <div class="group"><h3>Filed and useful</h3><ul>
-          <li>Sorted into <b>Bloodwork, Vaccines, Receipts, and Other</b>.</li>
+          <li>Every scan <b>filed by date and tagged</b> — easy to find again.</li>
           <li>A scanned vaccine offers to <b>set its next-due reminder</b>.</li>
           <li>Lab numbers feed straight into your <b>condition trackers</b>.</li>
         </ul></div>
@@ -695,12 +675,9 @@
           <li><b>Active and resolved kept apart</b> — resolving a condition archives it, it never disappears.</li>
         </ul></div>
       </div>
-      <div class="device-wrap"><div><div class="device"><div class="speaker"></div><div class="screen">
-        <div class="scr-eyebrow">WagNote</div><div class="scr-title">Diagnosed conditions</div><div class="scr-meta">Scout</div>
-        <div class="card"><div class="medrow"><div><div class="medname">Epilepsy</div><div class="medsub">Added Mar 2025</div></div><button class="minibtn">Resolve</button></div><div class="medrow"><div><div class="medname">CKD</div><div class="medsub">Added Jan 2025</div></div><button class="minibtn">Resolve</button></div></div>
-        <div class="q-head">Resolved</div>
-        <div class="card"><div class="medrow"><div><div class="medname" style="color:var(--muted)">Kennel cough</div><div class="medsub">Resolved Nov 2024</div></div><span class="chip neutral">Resolved</span></div></div>
-      </div></div></div></div>
+      <div class="device-wrap"><div><div class="device"><div class="speaker"></div>
+        <img class="phonevid" src="/wagnote-shot-10-diagnosed-conditions.png" alt="Diagnosed conditions" />
+      </div></div></div>
     </div>
   </section>
 
@@ -780,14 +757,9 @@
           <li><b>Tap to call</b> from anywhere in the app.</li>
         </ul></div>
       </div>
-      <div class="device-wrap"><div><div class="device"><div class="speaker"></div><div class="screen">
-        <div class="scr-eyebrow">WagNote</div><div class="scr-title">Reach your vet</div><div class="scr-meta">Scout</div>
-        <div class="tgrid">
-          <div class="tile"><div class="tl">Veterinarians</div><div class="tag">2 saved</div></div>
-          <div class="tile"><div class="tl">Emergency</div><div class="tag">1 saved</div></div>
-        </div>
-        <div class="card" style="margin-top:10px"><div class="row"><span class="lbl">Animal Hospital</span><span class="chip teal">Call</span></div><div class="row"><span class="lbl">Emergency Vet</span><span class="chip teal">Call</span></div><div class="row"><span class="lbl">Dr. Smith · Neurology</span><span class="chip neutral">Specialist</span></div></div>
-      </div></div></div></div>
+      <div class="device-wrap"><div><div class="device"><div class="speaker"></div>
+        <img class="phonevid" src="/wagnote-shot-11-care-info.png" alt="Care info" />
+      </div></div></div>
     </div>
   </section>
 
@@ -815,19 +787,9 @@
         <div class="disc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg> For anything urgent, Scout leads with a one-tap link to your ER — and for the calls only your vet should make, he points you to them. Scout informs; he never diagnoses.</div>
       </div>
 
-      <div class="scout-card">
-        <div class="scout-stage">
-          <div class="scout-badge">
-            <svg viewBox="0 0 24 24" fill="#176451"><ellipse cx="12" cy="16.6" rx="4.6" ry="3.6"/><ellipse cx="6.4" cy="11.4" rx="1.9" ry="2.5"/><ellipse cx="10.2" cy="8.6" rx="1.9" ry="2.6"/><ellipse cx="13.8" cy="8.6" rx="1.9" ry="2.6"/><ellipse cx="17.6" cy="11.4" rx="1.9" ry="2.5"/></svg>
-            <span class="nm">Scout</span>
-          </div>
-        </div>
-        <div class="scout-chat">
-          <div class="bubble q">What is diabetes in dogs?</div>
-          <div class="bubble a">In short: the body can't move sugar from the blood into its cells for energy, usually because there's too little insulin. Common signs are drinking and peeing more, weight loss, and a bigger appetite.</div>
-          <div class="followups"><span class="fu">Signs to watch →</span><span class="fu">How it's managed →</span></div>
-        </div>
-      </div>
+      <div class="device-wrap"><div><div class="device"><div class="speaker"></div>
+        <img class="phonevid" src="/wagnote-shot-08-ask-scout.png" alt="Meet Scout" />
+      </div></div></div>
     </div>
   </section>
 
