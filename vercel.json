@@ -1,18 +1,46 @@
 {
   "rewrites": [
-    { "source": "/passport", "destination": "/api/passport" },
-    { "source": "/records", "destination": "/api/records" },
-    { "source": "/join/:code", "destination": "/api/join?code=:code" },
-    { "source": "/join", "destination": "/api/join" },
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/medical-disclaimer", "destination": "/medical-disclaimer.html" }
+    {
+      "source": "/passport",
+      "destination": "/api/passport"
+    },
+    {
+      "source": "/records",
+      "destination": "/api/records"
+    },
+    {
+      "source": "/join/:code",
+      "destination": "/api/join?code=:code"
+    },
+    {
+      "source": "/join",
+      "destination": "/api/join"
+    },
+    {
+      "source": "/support",
+      "destination": "/support.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/medical-disclaimer",
+      "destination": "/medical-disclaimer.html"
+    }
   ],
   "headers": [
     {
       "source": "/.well-known/apple-app-site-association",
       "headers": [
-        { "key": "Content-Type", "value": "application/json" }
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
       ]
     }
   ]
