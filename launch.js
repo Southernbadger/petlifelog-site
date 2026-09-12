@@ -5,10 +5,12 @@
    and it is the only place the value lives — index.html reads it from here.
 
    With it TRUE, every "Join the waitlist" control on the site becomes a
-   "Download on the App Store" link opening in a new tab:
-     · the sticky bar button and the hero nav button on the home page
+   link to the App Store listing, opening in a new tab:
+     · the sticky bar button and the hero nav button on the home page —
+       these two read just "Download", because they are small buttons and
+       the full label can wrap on a phone
      · the one link in the header of privacy, terms, medical-disclaimer
-       and support
+       and support, reading "Download on the App Store"
      · the main call-to-action button (handled in index.html, which reads
        window.LAUNCHED from this file), where the email box also comes out
        of the row and the line under it becomes "Free to download on the
@@ -32,17 +34,22 @@ window.LAUNCHED = false;
 
   var APP_STORE_URL = 'https://apps.apple.com/app/id6783609217';
   var APP_STORE_LABEL = 'Download on the App Store';
+  /* The sticky bar and the hero nav are small buttons and neither class sets
+     white-space:nowrap, so the full label can wrap to two lines on a phone.
+     They take the short word instead. Everywhere with room — the main
+     call-to-action and the legal-page links — keeps the full label. */
+  var SHORT_LABEL = 'Download';
 
   /* <button> → <a>, keeping the class it already had so it keeps its look.
      .sb-join and .nav-join are button styles and do not set text-decoration,
      so an <a> wearing them would underline; .lb-join already sets it. */
-  function buttonToLink(el) {
+  function buttonToLink(el, label) {
     var a = document.createElement('a');
     a.className = el.className;
     a.href = APP_STORE_URL;
     a.target = '_blank';
     a.rel = 'noopener';
-    a.textContent = APP_STORE_LABEL;
+    a.textContent = label;
     a.style.textDecoration = 'none';
     el.parentNode.replaceChild(a, el);
   }
@@ -50,9 +57,9 @@ window.LAUNCHED = false;
   /* 1 — home page: the sticky bar and the hero nav. Both are buttons that
          scrolled to the call-to-action; they become links off the site. */
   var sb = document.querySelector('.sb-join');
-  if (sb) { buttonToLink(sb); }
+  if (sb) { buttonToLink(sb, SHORT_LABEL); }
   var nav = document.querySelector('.nav-join');
-  if (nav) { buttonToLink(nav); }
+  if (nav) { buttonToLink(nav, SHORT_LABEL); }
 
   /* 2 — privacy / terms / medical-disclaimer / support: already an <a>
          pointing at /#cta, so it only needs retargeting and relabelling. */
