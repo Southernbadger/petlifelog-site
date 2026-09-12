@@ -871,25 +871,56 @@ var panels = Array.prototype.slice.call(document.querySelectorAll('.cpanel'));
     }, {passive:true});
     restart();
 
+
+    /* ── THE LAUNCH SWITCH ────────────────────────────────────────────────────
+       TO LAUNCH: change the word false on the next line to true. That is the
+       whole launch and the only edit needed. It changes three things and
+       nothing else: the call-to-action button becomes a "Download on the App
+       Store" link that opens in a new tab, the email box comes out of the row,
+       and the line underneath becomes "Free to download on the App Store."
+       Change it back to false and the waitlist returns exactly as it is now.
+       While it is false the App Store link is never built, so nothing a
+       visitor can see mentions the App Store. */
+    var LAUNCHED = false;
+
     var joinBtn=document.getElementById('joinBtn'), email=document.getElementById('email');
     var fine=document.querySelector('.cta-sec .fine');
-    var defaultLabel=joinBtn.textContent, defaultFine=fine?fine.textContent:'';
-    function setFine(msg,color){ if(fine){ fine.textContent=msg; fine.style.color=color||''; } }
-    function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-    function submitEmail(){
-      var v=(email.value||'').trim();
-      if(!validEmail(v)){ email.focus(); email.style.outline='3px solid rgba(163,45,45,.5)'; setFine('Please enter a valid email address.','#A32D2D'); return; }
-      email.style.outline=''; joinBtn.disabled=true; joinBtn.textContent='Adding you\u2026'; setFine(defaultFine,'');
-      fetch('/api/subscribe',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:v}) })
-        .then(function(r){ return r.json().then(function(d){ return {ok:r.ok,d:d}; }); })
-        .then(function(res){
-          if(res.ok){ joinBtn.textContent='You\u2019re on the list \u2713'; email.disabled=true; setFine('Thanks \u2014 we\u2019ll email you the moment it\u2019s ready.','#2C7A45'); }
-          else { joinBtn.disabled=false; joinBtn.textContent=defaultLabel; setFine((res.d&&res.d.error)||'Something went wrong. Please try again.','#A32D2D'); }
-        })
-        .catch(function(){ joinBtn.disabled=false; joinBtn.textContent=defaultLabel; setFine('Network error. Please try again.','#A32D2D'); });
+    if(LAUNCHED){
+      /* POST-LAUNCH. The waitlist below never runs: no submit handler is bound
+         and /api/subscribe is never called. The link is created here rather than
+         written into the page so that the pre-launch page carries no App Store
+         link for a visitor to find. */
+      var appLink=document.createElement('a');
+      appLink.className='join';
+      appLink.href='https://apps.apple.com/app/id6783609217';
+      appLink.target='_blank';
+      appLink.rel='noopener';
+      appLink.textContent='Download on the App Store';
+      appLink.style.textDecoration='none';   // an <a> would otherwise underline; .join is a button style
+      joinBtn.parentNode.replaceChild(appLink,joinBtn);
+      if(email){ email.parentNode.removeChild(email); }
+      var ctaRow=document.getElementById('ctaRow');
+      if(ctaRow){ ctaRow.style.justifyContent='center'; }   // the row centred the pair; the link is now alone in it
+      if(fine){ fine.textContent='Free to download on the App Store.'; }
+    } else {
+      var defaultLabel=joinBtn.textContent, defaultFine=fine?fine.textContent:'';
+      function setFine(msg,color){ if(fine){ fine.textContent=msg; fine.style.color=color||''; } }
+      function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+      function submitEmail(){
+        var v=(email.value||'').trim();
+        if(!validEmail(v)){ email.focus(); email.style.outline='3px solid rgba(163,45,45,.5)'; setFine('Please enter a valid email address.','#A32D2D'); return; }
+        email.style.outline=''; joinBtn.disabled=true; joinBtn.textContent='Adding you\u2026'; setFine(defaultFine,'');
+        fetch('/api/subscribe',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:v}) })
+          .then(function(r){ return r.json().then(function(d){ return {ok:r.ok,d:d}; }); })
+          .then(function(res){
+            if(res.ok){ joinBtn.textContent='You\u2019re on the list \u2713'; email.disabled=true; setFine('Thanks \u2014 we\u2019ll email you the moment it\u2019s ready.','#2C7A45'); }
+            else { joinBtn.disabled=false; joinBtn.textContent=defaultLabel; setFine((res.d&&res.d.error)||'Something went wrong. Please try again.','#A32D2D'); }
+          })
+          .catch(function(){ joinBtn.disabled=false; joinBtn.textContent=defaultLabel; setFine('Network error. Please try again.','#A32D2D'); });
+      }
+      joinBtn.addEventListener('click', submitEmail);
+      email.addEventListener('keydown', function(e){ if(e.key==='Enter'){ submitEmail(); } });
     }
-    joinBtn.addEventListener('click', submitEmail);
-    email.addEventListener('keydown', function(e){ if(e.key==='Enter'){ submitEmail(); } });
     (function(){
       var bar=document.getElementById('stickyBar');
       var hero=document.querySelector('.hero');
